@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    
+    <title>Newsfeed admin | Give-Directly</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="header">
+      <a class="brand" href="index.html" aria-label="Give-Directly home"
+        ><span class="brand-icon" aria-hidden="true">✳</span
+        ><span
+          >give-<span class="brand-em">directly</span
+          ><small>Families first. Always.</small></span
+        ></a
+      ><button
+        class="menu-button"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav"
+      >
+        Menu <span aria-hidden="true">☰</span>
+      </button>
+      <nav id="site-nav" aria-label="Main navigation">
+        <a href="about.html">About</a
+        ><a href="how-it-works.html">How it works</a
+        ><a href="programs.html">Programs</a
+        ><a href="stories.html">Stories</a
+        ><a href="impact.html">Impact</a><a href="faq.html">FAQ</a
+        ><a href="contact.html">Contact</a
+        ><a class="nav-cta" href="faq.html">Giving information ↗</a>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="page-head admin-head">
+        <p class="eyebrow">Admin</p>
+        <h1>Newsfeed admin</h1>
+      </section>
+
+      <section class="admin-box" id="login-view" hidden>
+        <h2>Sign in</h2>
+        <label>Password<input id="pw" type="password" autocomplete="current-password" /></label>
+        <div class="editor-actions"><button class="button" id="login-btn" type="button">Sign in</button></div>
+        <p id="login-msg" class="story-status" role="status"></p>
+      </section>
+
+      <div id="panel" hidden>
+        <section class="story-editor admin-editor" aria-labelledby="ed-title">
+          <div class="admin-bar">
+            <h2 id="ed-title">Add a post</h2>
+            <button class="button ghost" id="logout-btn" type="button">Sign out</button>
+          </div>
+          <form id="post-form" novalidate>
+            <div class="field-row">
+              <label>Heading<input id="f-title" type="text" required maxlength="100" placeholder="e.g. Amina's family" /></label>
+              <label>Posted<input id="f-date" type="datetime-local" required /></label>
+            </div>
+            <label>Update line (optional)<input id="f-update" type="text" maxlength="140" placeholder="e.g. Amina received a $27 payment." /></label>
+            <div class="field-row">
+              <label>Location (optional)<input id="f-location" type="text" maxlength="80" placeholder="Region, country (avoid exact addresses)" /></label>
+              <label>Photo (optional)<input id="f-file" type="file" accept="image/jpeg,image/png,image/webp" /></label>
+            </div>
+            <p id="f-current" class="story-status" hidden></p>
+            <label>Their words<textarea id="f-body" rows="10" required minlength="20" placeholder="Paste or type what the person said. Leave a blank line between paragraphs."></textarea></label>
+            <label class="check"><input id="f-consent" type="checkbox" /> The person featured has agreed to this being published, and I have removed details that could put them at risk (such as exact locations or full names of children).</label>
+            <div class="editor-actions">
+              <button class="button" id="f-save" type="button">Publish post</button>
+              <button class="button ghost" id="f-cancel" type="button" hidden>Cancel editing</button>
+            </div>
+            <p id="f-status" class="story-status" role="status"></p>
+          </form>
+        </section>
+        <section class="admin-box">
+          <h2>Published posts</h2>
+          <div id="admin-list"></div>
+        </section>
+      </div>
+    </main>
+    <footer>
+      <div class="footer-top">
+        <div>
+          <a class="footer-brand" href="index.html"
+            >give-<span>directly</span><span class="dot">✳</span></a
+          >
+          <p>Supporting families facing deep poverty in rural villages.</p>
+        </div>
+        <div class="footer-links">
+          <div>
+            <strong>Explore</strong><a href="about.html">About</a
+            ><a href="how-it-works.html">How it works</a
+            ><a href="programs.html">Programs</a
+            ><a href="stories.html">Stories</a>
+          </div>
+          <div>
+            <strong>Information</strong
+            ><a href="impact.html">Impact & transparency</a
+            ><a href="faq.html">FAQ</a><a href="contact.html">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Give-Directly</span
+        >
+      </div>
+    </footer>
+    <script src="assets/js/site.js" defer></script>
+    <script src="assets/js/admin.js" defer></script>
+  </body>
+</html>

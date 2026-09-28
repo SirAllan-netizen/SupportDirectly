@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Verified reporting and financial information from Give-Directly."
+    />
+    <title>Impact and transparency | Give-Directly</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="header">
+      <a class="brand" href="index.html" aria-label="Give-Directly home"
+        ><span class="brand-icon" aria-hidden="true">✳</span
+        ><span
+          >give-<span class="brand-em">directly</span
+          ><small>Families first. Always.</small></span
+        ></a
+      ><button
+        class="menu-button"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav"
+      >
+        Menu <span aria-hidden="true">☰</span>
+      </button>
+      <nav id="site-nav" aria-label="Main navigation">
+        <a href="about.html">About</a
+        ><a href="how-it-works.html">How it works</a
+        ><a href="programs.html">Programs</a><a href="stories.html">Stories</a
+        ><a href="impact.html" aria-current="page">Impact</a
+        ><a href="faq.html">FAQ</a><a href="contact.html">Contact</a
+        ><a class="nav-cta" href="faq.html">Giving information ↗</a>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="page-head">
+        <p class="eyebrow">Accountability</p>
+        <h1>Trust deserves evidence.</h1>
+        <p>
+          As Give-Directly begins delivering assistance, this is where we will
+          report results and explain how resources are used.
+        </p>
+      </section>
+      <section class="impact-dash" aria-label="Funding progress">
+        <div class="round-card">
+          <p class="urgent">Current funding round</p>
+          <h2 id="round-title">Village family support</h2>
+          <p class="round-desc">
+            Support delivered directly to verified families, with every dollar
+            accounted for below.
+          </p>
+          <div class="raise-row">
+            <strong id="round-raised">$0</strong>
+            <span>raised of <span id="round-goal">$0</span></span>
+            <b id="round-pct">0%</b>
+          </div>
+          <div class="segbar" id="round-bar" role="progressbar" aria-label="Funds raised" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <span class="segbar-fill" id="round-fill"></span>
+          </div>
+          <p class="togo" id="round-togo"></p>
+        </div>
+        <div class="round-card fam-card">
+          <p class="urgent">Families reached</p>
+          <div class="raise-row">
+            <strong id="fam-count">0</strong>
+            <span>of <span id="fam-target">0</span> families</span>
+            <b id="fam-pct">0%</b>
+          </div>
+          <div class="segbar" id="fam-bar" role="progressbar" aria-label="Families supported" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <span class="segbar-fill" id="fam-fill"></span>
+          </div>
+          <p class="togo">Counted only from verified delivery records, with privacy protected.</p>
+        </div>
+      </section>
+      <section class="charts" aria-label="Charts">
+        <div class="chart-card">
+          <p class="urgent">Where the money goes</p>
+          <div class="donut-wrap">
+            <div class="donut-box">
+              <svg id="donut" viewBox="0 0 42 42" role="img" aria-label="Donut chart of how funds are allocated"></svg>
+              <div class="donut-center"><strong id="donut-total">$0</strong><span>allocated</span></div>
+            </div>
+            <ul class="legend" id="legend"></ul>
+          </div>
+        </div>
+        <div class="chart-card">
+          <p class="urgent">Funds received by month</p>
+          <div class="bars" id="bars" role="img" aria-label="Bar chart of funds received per month"></div>
+          <p class="chart-empty" id="bars-empty">No donations recorded yet.</p>
+        </div>
+      </section>
+      <section class="cards">
+        <article>
+          <span class="number">01</span>
+          <h3>Funds received</h3>
+          <p>
+            Published only after donations can be received and reconciled
+            through an established process.
+          </p>
+        </article>
+        <article>
+          <span class="number">02</span>
+          <h3>Families supported</h3>
+          <p>Counted from verified delivery records, with privacy protected.</p>
+        </article>
+        <article>
+          <span class="number">03</span>
+          <h3>Where funds go</h3>
+          <p>
+            Program spending and operating costs explained in plain language.
+          </p>
+        </article>
+      </section>
+      <section class="note" id="no-totals">
+        <h2>No impact totals to report yet</h2>
+        <p>
+          We have not placed estimates or another organization's statistics
+          here. Verified reports will be added as they become available.
+        </p>
+      </section>
+    </main>
+    <footer>
+      <div class="footer-top">
+        <div>
+          <a class="footer-brand" href="index.html"
+            >give-<span>directly</span><span class="dot">✳</span></a
+          >
+          <p>Supporting families facing deep poverty in rural villages.</p>
+        </div>
+        <div class="footer-links">
+          <div>
+            <strong>Explore</strong><a href="about.html">About</a
+            ><a href="how-it-works.html">How it works</a
+            ><a href="programs.html">Programs</a
+            ><a href="stories.html">Stories</a>
+          </div>
+          <div>
+            <strong>Information</strong
+            ><a href="impact.html">Impact & transparency</a
+            ><a href="faq.html">FAQ</a><a href="contact.html">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Give-Directly</span
+        >
+      </div>
+    </footer>
+    <script src="assets/js/site.js" defer></script>
+    <script src="assets/js/demo.js" defer></script>
+    <script src="assets/js/impact.js" defer></script>
+  </body>
+</html>
