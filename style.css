@@ -756,3 +756,11 @@ footer p {
     font-size: 3.1rem;
   }
 }
+
+
+.donation-payment-note {
+  margin: 0.45rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  opacity: 0.82;
+}

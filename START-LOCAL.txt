@@ -1,0 +1,15 @@
+LOCAL ADMIN — QUICK START
+
+1. Install Node.js 18 or newer if it is not already installed.
+2. Open Terminal / PowerShell in this project folder.
+3. Run: npm run setup-admin
+4. Choose a private password of at least 12 characters.
+5. Run: npm start
+6. Open: http://localhost:3000/admin.html
+
+Do not open admin.html by double-clicking the file. The admin requires server.js because posts, images, and login are handled by the backend.
+
+Your blog posts are saved in: data/stories.json
+Uploaded story images are saved in: assets/images/stories/
+
+To stop the local server, press Ctrl+C in the terminal.

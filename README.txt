@@ -1,16 +1,45 @@
-Give-Directly website
+Give-Directly website — PHP/XAMPP edition
 
-RUN (needs Node.js 18+):
-  ADMIN_PASSWORD="choose-a-long-password" node server.js
-  (Windows PowerShell:  $env:ADMIN_PASSWORD="choose-a-long-password"; node server.js)
+LOCAL DEVELOPMENT WITH XAMPP
+----------------------------
+This edition does not require Node.js or npm.
 
-  Site:   http://localhost:3000
-  Admin:  http://localhost:3000/admin.html
+1. Put the project in:
+   C:\\xampp\\htdocs\\SupportDirectly\\
 
-Visitors can only READ the Stories page. Posts are created, edited and deleted
-in the admin panel, and stored in data/stories.json. Uploaded photos go to
-assets/images/stories/.
+2. Open XAMPP Control Panel and start Apache.
 
-If ADMIN_PASSWORD is not set, a random password is printed in the terminal.
-Opening the HTML files directly from a folder (without the server) shows the
-public pages only; the admin panel needs the server.
+3. First-time admin setup:
+   http://localhost/SupportDirectly/setup-admin.php
+
+4. Blog admin:
+   http://localhost/SupportDirectly/admin.html
+
+5. Public site:
+   http://localhost/SupportDirectly/
+
+BLOG STORAGE
+------------
+Posts: data/stories.json
+Uploaded images: assets/images/stories/
+Admin password hash: data/admin-config.php
+
+The password is stored as a secure PHP password hash, not readable plain text.
+The data folder includes an .htaccess rule blocking direct web access.
+
+BLOG ADMIN FEATURES
+-------------------
+- Draft and published posts
+- Future publication dates (scheduled posts)
+- Title, excerpt, author, category and location
+- Featured JPG/PNG/WebP images up to 5 MB
+- Full article body
+- Preview before saving
+- Search/filter
+- Edit and delete
+
+HOSTINGER
+---------
+This PHP version is designed to move cleanly to normal PHP hosting such as Hostinger.
+PHP must be enabled, and PHP needs write permission to data/ and assets/images/stories/.
+Run setup-admin.php once on the live server to create the production admin password.

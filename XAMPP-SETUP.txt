@@ -1,0 +1,48 @@
+GIVE-DIRECTLY BLOG ADMIN — XAMPP SETUP
+======================================
+
+This edition does NOT need Node.js or npm.
+It uses Apache + PHP, which are included with XAMPP.
+
+1. Put the entire SupportDirectly folder inside:
+   C:\xampp\htdocs\SupportDirectly\
+
+2. Open XAMPP Control Panel.
+   Start Apache.
+
+3. In your browser open:
+   http://localhost/SupportDirectly/setup-admin.php
+
+4. Create your private admin password (minimum 12 characters).
+   The password itself is NOT saved as readable text.
+   A password hash is created in:
+   data/admin-config.php
+
+5. Then open:
+   http://localhost/SupportDirectly/admin.html
+
+6. Sign in and create a test draft or published blog post.
+
+PUBLIC BLOG
+-----------
+Blog listing:
+http://localhost/SupportDirectly/stories.html
+
+Posts are saved in:
+data/stories.json
+
+Uploaded blog images are saved in:
+assets/images/stories/
+
+HOSTINGER LATER
+---------------
+Upload the same PHP version of the site to your hosting account.
+PHP must be enabled and the data folder plus assets/images/stories folder must be writable by PHP.
+You can use setup-admin.php once on the server to create the production admin password.
+After setup, the setup page automatically refuses to create another password while data/admin-config.php exists.
+
+IMPORTANT
+---------
+Do not open admin.html by double-clicking it as a file:// page.
+Always use an Apache URL such as:
+http://localhost/SupportDirectly/admin.html

@@ -14,6 +14,8 @@ const donateButton = document.querySelector("#donate-button");
 let selectedFrequency = "once";
 let selectedAmount = "60";
 
+const PAYPAL_DONATE_URL = "https://www.paypal.com/donate/?business=6YTHHPS2YY6SE&no_recurring=0&item_name=Your+gift+helps+families+across+Africa+access+food%2C+clean+water%2C+and+essential+support%E2%80%94delivered+with+dignity+and+choice.&currency_code=USD";
+
 function updateDonationButton() {
   if (!donateButton) return;
   const amountText =
@@ -39,8 +41,23 @@ amountButtons.forEach((button) => {
   });
 });
 
+function buildPayPalDonateUrl() {
+  const url = new URL(PAYPAL_DONATE_URL);
+
+  // For preset amounts, ask PayPal to prefill the selected donation amount.
+  // For "Other", PayPal lets the donor enter the amount on its donation page.
+  if (selectedAmount !== "Other") {
+    url.searchParams.set("amount", selectedAmount);
+  } else {
+    url.searchParams.delete("amount");
+  }
+
+  return url.toString();
+}
+
 if (donateButton) {
   donateButton.addEventListener("click", () => {
-    alert("Secure online giving is coming soon. Please check back shortly.");
+    const paypalUrl = buildPayPalDonateUrl();
+    window.open(paypalUrl, "_blank", "noopener,noreferrer");
   });
 }

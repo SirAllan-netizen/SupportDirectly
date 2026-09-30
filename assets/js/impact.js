@@ -27,8 +27,6 @@ const IMPACT = {
   ],
 };
 /* ---------------------------- end of data ---------------------------- */
-
-// Demo mode (see demo.js) swaps in clearly labelled sample figures
 if (window.DEMO && window.DEMO.enabled) Object.assign(IMPACT, window.DEMO.impact);
 
 (function () {

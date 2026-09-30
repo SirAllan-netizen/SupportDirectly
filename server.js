@@ -10,6 +10,26 @@ const path = require("path");
 const crypto = require("crypto");
 
 const ROOT = __dirname;
+
+/* Load a small local .env file when present. Hostinger/production environment
+   variables still take priority because existing process.env values are never
+   overwritten. */
+const ENV_FILE = path.join(ROOT, ".env");
+if (fs.existsSync(ENV_FILE)) {
+  try {
+    fs.readFileSync(ENV_FILE, "utf8").split(/\r?\n/).forEach((line) => {
+      const raw = line.trim();
+      if (!raw || raw.startsWith("#")) return;
+      const i = raw.indexOf("=");
+      if (i < 1) return;
+      const key = raw.slice(0, i).trim();
+      let value = raw.slice(i + 1).trim();
+      if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) value = value.slice(1, -1);
+      if (!(key in process.env)) process.env[key] = value;
+    });
+  } catch (_) {}
+}
+
 const DATA_FILE = path.join(ROOT, "data", "stories.json");
 const UPLOAD_DIR = path.join(ROOT, "assets", "images", "stories");
 const PORT = Number(process.env.PORT) || 3000;
@@ -19,7 +39,7 @@ if (!PASSWORD) {
   PASSWORD = crypto.randomBytes(9).toString("base64url");
   console.log("\n  ADMIN_PASSWORD is not set. A temporary password was generated for this run:");
   console.log("  " + PASSWORD);
-  console.log('  Set your own with:  ADMIN_PASSWORD="your-long-password" node server.js\n');
+  console.log('  For a permanent local password run: npm run setup-admin\n');
 } else if (PASSWORD.length < 10) {
   console.log("\n  Warning: ADMIN_PASSWORD is short. Use at least 12 characters.\n");
 }
@@ -110,17 +130,22 @@ const cookie = (req, value, maxAge) => {
 /* ---------- validation ---------- */
 function cleanStory(b, requireConsent) {
   const str = (v, max) => (typeof v === "string" ? v.trim().slice(0, max) : "");
+  const status = b.status === "draft" ? "draft" : "published";
   const s = {
-    title: str(b.title, 100),
-    update: str(b.update, 140),
+    title: str(b.title, 120),
+    excerpt: str(b.excerpt || b.update, 320),
+    author: str(b.author, 80) || "Give-Directly Team",
+    category: str(b.category, 60) || "Community Stories",
     location: str(b.location, 80),
     date: str(b.date, 40),
     image: str(b.image, 200),
-    body: typeof b.body === "string" ? b.body.replace(/\r\n/g, "\n").trim().slice(0, 20000) : "",
+    body: typeof b.body === "string" ? b.body.replace(/\r\n/g, "\n").trim().slice(0, 30000) : "",
+    status,
   };
-  if (!s.title) return { error: "A heading is required." };
-  if (s.body.length < 20) return { error: "The story text is too short." };
-  if (isNaN(new Date(s.date))) return { error: "A valid date is required." };
+  if (!s.title) return { error: "A post title is required." };
+  if (s.excerpt.length < 10) return { error: "Add a short excerpt for the blog listing." };
+  if (s.body.length < 40) return { error: "The article text is too short." };
+  if (isNaN(new Date(s.date))) return { error: "A valid publication date is required." };
   s.date = new Date(s.date).toISOString();
   if (s.image && !/^assets\/images\/stories\/[\w\-]+\.(jpg|png|webp)$/.test(s.image))
     return { error: "Invalid photo path." };
@@ -128,13 +153,35 @@ function cleanStory(b, requireConsent) {
   return { story: s };
 }
 
+function normalizeStory(x) {
+  return {
+    ...x,
+    excerpt: x.excerpt || x.update || "",
+    author: x.author || "Give-Directly Team",
+    category: x.category || "Community Stories",
+    status: x.status || "published",
+  };
+}
+
+function isPublicStory(x) {
+  const p = normalizeStory(x);
+  return p.status === "published" && !isNaN(new Date(p.date)) && new Date(p.date).getTime() <= Date.now();
+}
+
 /* ---------- API ---------- */
 async function api(req, res, url) {
   const p = url.pathname;
 
   if (req.method === "GET" && p === "/api/stories") {
-    const list = readStories().sort((a, b) => new Date(b.date) - new Date(a.date));
+    const list = readStories().map(normalizeStory).filter(isPublicStory).sort((a, b) => new Date(b.date) - new Date(a.date));
     return send(res, 200, list);
+  }
+
+  const publicStory = p.match(/^\/api\/stories\/([a-f0-9]{12})$/);
+  if (req.method === "GET" && publicStory) {
+    const found = readStories().map(normalizeStory).find((x) => x.id === publicStory[1]);
+    if (!found || !isPublicStory(found)) return send(res, 404, { error: "Story not found" });
+    return send(res, 200, found);
   }
 
   if (!p.startsWith("/api/admin/")) return send(res, 404, { error: "Not found" });
@@ -167,6 +214,11 @@ async function api(req, res, url) {
   if (p === "/api/admin/logout" && req.method === "POST") {
     sessions.delete(parseCookies(req).gd_admin);
     return send(res, 200, { ok: true }, { "Set-Cookie": cookie(req, "", 0) });
+  }
+
+  if (p === "/api/admin/stories" && req.method === "GET") {
+    const list = readStories().map(normalizeStory).sort((a, b) => new Date(b.date) - new Date(a.date));
+    return send(res, 200, list);
   }
 
   if (p === "/api/admin/stories" && req.method === "POST") {
