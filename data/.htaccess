@@ -1,2 +1,2 @@
-# Keep blog JSON and admin configuration private.
+# Keep blog/payment JSON and private configuration private.
 Require all denied

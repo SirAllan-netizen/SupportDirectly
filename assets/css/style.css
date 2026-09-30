@@ -1684,3 +1684,69 @@ body.modal-open { overflow: hidden; }
 @media (max-width: 470px) {
   .admin-dashboard { grid-template-columns: 1fr; }
 }
+
+
+/* Footer link accessibility */
+.footer-links a {
+  cursor: pointer;
+}
+.footer-links a:focus-visible,
+.footer-brand:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+
+/* ---------- Payment options ---------- */
+.payment-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+.crypto-donate-button {
+  background: #122a45;
+}
+.crypto-donate-button:hover {
+  background: #0a1e34;
+}
+.crypto-donate-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+  background: #637180;
+}
+.custom-amount-wrap {
+  margin: -0.15rem 0 1rem;
+}
+.custom-amount-wrap label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.custom-amount-field {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid #d8dfe2;
+  border-radius: 7px;
+  padding: 0 0.85rem;
+  background: #fff;
+}
+.custom-amount-field input {
+  width: 100%;
+  min-height: 48px;
+  border: 0;
+  outline: 0;
+  font: inherit;
+}
+.donation-status {
+  min-height: 1.25rem;
+  margin: 0.6rem 0 0;
+  text-align: center;
+  color: #23435c;
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+@media (max-width: 560px) {
+  .payment-buttons { grid-template-columns: 1fr; }
+}

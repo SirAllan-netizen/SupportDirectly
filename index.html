@@ -102,14 +102,26 @@
                 Other
               </button>
             </div>
-            <button class="donate-button" type="button" id="donate-button">
-              Give $60 once
-            </button>
+            <div class="custom-amount-wrap" id="custom-amount-wrap" hidden>
+              <label for="custom-amount">Enter donation amount (USD)</label>
+              <div class="custom-amount-field">
+                <span aria-hidden="true">$</span>
+                <input id="custom-amount" type="number" min="1" max="10000" step="1" inputmode="decimal" placeholder="50">
+              </div>
+            </div>
+            <div class="payment-buttons">
+              <button class="donate-button" type="button" id="donate-button">
+                Give $60 with PayPal
+              </button>
+              <button class="donate-button crypto-donate-button" type="button" id="crypto-donate-button">
+                Give $60 with crypto
+              </button>
+            </div>
             <p class="donation-program">Village Family Support</p>
-            <p class="donation-payment-note">
-              Secure checkout is completed on PayPal. For monthly gifts, select
-              the recurring donation option on the PayPal page.
+            <p class="donation-payment-note" id="donation-payment-note">
+              Choose PayPal or crypto for a one-time gift. Monthly gifts are currently completed through PayPal.
             </p>
+            <p class="donation-status" id="donation-status" role="status" aria-live="polite"></p>
           </div>
         </div>
       </section>
@@ -191,28 +203,27 @@
     <footer>
       <div class="footer-top">
         <div>
-          <a class="footer-brand" href="index.html"
-            >give-<span>directly</span><span class="dot">✳</span></a
-          >
+          <a class="footer-brand" href="index.html" aria-label="Give-Directly home">give-<span>directly</span><span class="dot">✳</span></a>
           <p>Supporting families facing deep poverty in rural villages.</p>
         </div>
-        <div class="footer-links">
+        <div class="footer-links" aria-label="Footer navigation">
           <div>
-            <strong>Explore</strong><a href="about.html">About</a
-            ><a href="how-it-works.html">How it works</a
-            ><a href="programs.html">Programs</a
-            ><a href="stories.html">Stories</a>
+            <strong>Explore</strong>
+            <a href="about.html">About</a>
+            <a href="how-it-works.html">How it works</a>
+            <a href="programs.html">Programs</a>
+            <a href="stories.html">Stories</a>
           </div>
           <div>
-            <strong>Information</strong
-            ><a href="impact.html">Impact & transparency</a
-            ><a href="faq.html">FAQ</a><a href="contact.html">Contact</a>
+            <strong>Information</strong>
+            <a href="impact.html">Impact &amp; transparency</a>
+            <a href="faq.html">FAQ</a>
+            <a href="contact.html">Contact</a>
           </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 Give-Directly</span
-        >
+        <span>© 2026 Give-Directly</span>
       </div>
     </footer>
     <script src="assets/js/site.js" defer></script>

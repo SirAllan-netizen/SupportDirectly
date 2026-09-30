@@ -46,3 +46,17 @@ IMPORTANT
 Do not open admin.html by double-clicking it as a file:// page.
 Always use an Apache URL such as:
 http://localhost/SupportDirectly/admin.html
+
+
+NOWPAYMENTS CRYPTO SETUP
+------------------------
+1. In your NOWPayments account, add your payout wallet(s).
+2. Generate an API key and an IPN secret key.
+3. With Apache running, open:
+   http://localhost/SupportDirectly/setup-payments.php
+4. Enter the API key and IPN secret. Leave Public website URL blank while testing on XAMPP.
+5. After deployment to Hostinger, delete data/nowpayments-config.php on the server, reopen setup-payments.php, and save the live https:// domain as the Public website URL.
+6. The API key and IPN secret are stored in data/nowpayments-config.php, which is excluded from Git. Never paste either key into JavaScript or GitHub.
+7. Crypto donation records/status callbacks are stored privately in data/crypto-payments.json.
+
+IMPORTANT: NOWPayments IPN callbacks require a publicly reachable HTTPS URL, so automatic status callbacks will only work after the site is hosted publicly.

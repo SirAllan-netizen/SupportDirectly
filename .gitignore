@@ -1,4 +1,7 @@
 .env
 node_modules/
 .DS_Store
+
 data/admin-config.php
+data/nowpayments-config.php
+data/crypto-payments.json
